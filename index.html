@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis 10 Proyectos JS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>El Reto de los 10 Proyectos de JavaScript</h1>
+        <h2>Tu Nombre / Desarrollador</h2>
+    </header>
+
+    <nav>
+        <button onclick="showProject('p1')">1. Contador</button>
+        <button onclick="showProject('p2')">2. To-Do List</button>
+        <button onclick="showProject('p3')">3. Adivina el Número</button>
+        <button onclick="showProject('p4')">4. Calculadora</button>
+        <button onclick="showProject('p5')">5. Colores Aleatorios</button>
+        <button onclick="showProject('p6')">6. Temporizador</button>
+        <button onclick="showProject('p7')">7. Generador Contraseñas</button>
+        <button onclick="showProject('p8')">8. Modo Oscuro</button>
+        <button onclick="showProject('p9')">9. Piedra, Papel o Tijera</button>
+        <button onclick="showProject('p10')">10. Galería</button>
+    </nav>
+
+    <main id="main-content">
+        <!-- Proyecto 1: Contador Inteligente -->
+        <section id="p1" class="project-section active">
+            <h3>Contador Inteligente</h3>
+            <h1 id="counter-display">0</h1>
+            <div class="buttons">
+                <button onclick="updateCounter(-1)">-1</button>
+                <button onclick="resetCounter()">Reiniciar</button>
+                <button onclick="updateCounter(1)">+1</button>
+            </div>
+        </section>
+
+        <!-- Proyecto 2: Lista de Tareas -->
+        <section id="p2" class="project-section hidden">
+            <h3>Lista de Tareas</h3>
+            <div class="input-group">
+                <input type="text" id="todo-input" placeholder="Nueva tarea...">
+                <button onclick="addTodo()">Agregar</button>
+            </div>
+            <ul id="todo-list"></ul>
+        </section>
+
+        <!-- Proyecto 3: Adivina el Número -->
+        <section id="p3" class="project-section hidden">
+            <h3>Adivina el Número (1 - 100)</h3>
+            <p id="guess-message">¡Empieza a adivinar!</p>
+            <p>Intentos: <span id="guess-attempts">0</span></p>
+            <div class="input-group">
+                <input type="number" id="guess-input" min="1" max="100">
+                <button onclick="checkGuess()">Adivinar</button>
+                <button onclick="initGuessGame()">Nuevo Juego</button>
+            </div>
+        </section>
+
+        <!-- Proyecto 4: Calculadora Básica -->
+        <section id="p4" class="project-section hidden">
+            <h3>Calculadora</h3>
+            <div class="calculator">
+                <input type="text" id="calc-display" disabled>
+                <div class="calc-buttons">
+                    <button onclick="calcInput('7')">7</button>
+                    <button onclick="calcInput('8')">8</button>
+                    <button onclick="calcInput('9')">9</button>
+                    <button onclick="calcInput('/')">/</button>
+                    <button onclick="calcInput('4')">4</button>
+                    <button onclick="calcInput('5')">5</button>
+                    <button onclick="calcInput('6')">6</button>
+                    <button onclick="calcInput('*')">*</button>
+                    <button onclick="calcInput('1')">1</button>
+                    <button onclick="calcInput('2')">2</button>
+                    <button onclick="calcInput('3')">3</button>
+                    <button onclick="calcInput('-')">-</button>
+                    <button onclick="calcInput('0')">0</button>
+                    <button onclick="clearCalc()">C</button>
+                    <button onclick="calculateResult()">=</button>
+                    <button onclick="calcInput('+')">+</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proyecto 5: Cambiador de Colores -->
+        <section id="p5" class="project-section hidden">
+            <h3>Color Aleatorio</h3>
+            <h2 id="color-code">#FFFFFF</h2>
+            <div class="buttons">
+                <button onclick="changeColor()">Cambiar Color</button>
+                <button onclick="copyColor()">Copiar Código</button>
+            </div>
+        </section>
+
+        <!-- Proyecto 6: Temporizador -->
+        <section id="p6" class="project-section hidden">
+            <h3>Temporizador</h3>
+            <h1 id="timer-display">00:00</h1>
+            <div class="input-group">
+                <input type="number" id="timer-min" placeholder="Min" min="0">
+                <input type="number" id="timer-sec" placeholder="Seg" min="0" max="59">
+            </div>
+            <div class="buttons">
+                <button onclick="startTimer()">Iniciar</button>
+                <button onclick="pauseTimer()">Pausar</button>
+                <button onclick="resetTimer()">Reiniciar</button>
+            </div>
+        </section>
+
+        <!-- Proyecto 7: Generador de Contraseñas -->
+        <section id="p7" class="project-section hidden">
+            <h3>Generador de Contraseñas</h3>
+            <h2 id="password-display">----</h2>
+            <div class="password-options">
+                <label>Longitud: <input type="number" id="pass-length" value="12" min="6" max="20"></label><br>
+                <label><input type="checkbox" id="pass-upper" checked> Mayúsculas</label>
+                <label><input type="checkbox" id="pass-lower" checked> Minúsculas</label>
+                <label><input type="checkbox" id="pass-nums" checked> Números</label>
+                <label><input type="checkbox" id="pass-syms" checked> Símbolos</label>
+            </div>
+            <div class="buttons">
+                <button onclick="generatePassword()">Generar</button>
+                <button onclick="copyPassword()">Copiar</button>
+            </div>
+        </section>
+
+        <!-- Proyecto 8: Modo Oscuro / Claro -->
+        <section id="p8" class="project-section hidden">
+            <h3>Modo Oscuro / Claro</h3>
+            <div class="card">
+                <p>Usa el botón para cambiar el tema de la página. Tu preferencia se guardará automáticamente.</p>
+                <button onclick="toggleDarkMode()" id="theme-btn">Cambiar Tema</button>
+            </div>
+        </section>
+
+        <!-- Proyecto 9: Piedra, Papel o Tijera -->
+        <section id="p9" class="project-section hidden">
+            <h3>Piedra, Papel o Tijera</h3>
+            <h2 id="rps-result">¡Elige tu arma!</h2>
+            <div class="buttons">
+                <button onclick="playRPS('Piedra')">🪨 Piedra</button>
+                <button onclick="playRPS('Papel')">📄 Papel</button>
+                <button onclick="playRPS('Tijera')">✂️ Tijera</button>
+            </div>
+            <p>Marcador: Usuario <span id="rps-user-score">0</span> - <span id="rps-pc-score">0</span> Computadora</p>
+            <button onclick="resetRPS()">Reiniciar Marcador</button>
+        </section>
+
+        <!-- Proyecto 10: Galería de Imágenes -->
+        <section id="p10" class="project-section hidden">
+            <h3>Galería con Filtros</h3>
+            <div class="gallery-controls">
+                <input type="text" id="gallery-search" placeholder="Buscar..." onkeyup="filterGallery()">
+                <div class="filter-buttons">
+                    <button onclick="filterCategory('Todas')">Todas</button>
+                    <button onclick="filterCategory('Animales')">Animales</button>
+                    <button onclick="filterCategory('Tecnología')">Tecnología</button>
+                    <button onclick="filterCategory('Naturaleza')">Naturaleza</button>
+                </div>
+            </div>
+            <div class="gallery-grid" id="gallery-grid"></div>
+            <!-- Modal -->
+            <div id="gallery-modal" class="modal hidden" onclick="closeModal()">
+                <img id="modal-img" src="" alt="Ampliada">
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Tu Nombre &copy; 2026 | <a href="#" target="_blank">Mi GitHub</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
